@@ -1,0 +1,29 @@
+import json
+
+students_data = [
+    {
+        "name": "Alice",
+        "age": 20,
+        "grades": [85, 90, 88]
+    },
+    {
+        "name": "Bob",
+        "age": 22,
+        "grades": [70, 75, 80]
+    }
+]
+
+with open("students.json", "w", encoding="utf-8") as file:
+    json.dump(students_data, file, indent=4)
+
+with open("students.json", "r", encoding="utf-8") as file:
+    students = json.load(file)
+
+for student in students:
+    grades = student["grades"]
+    student["average_grade"] = sum(grades) / len(grades)
+
+with open("students_with_average.json", "w", encoding="utf-8") as file:
+    json.dump(students, file, indent=4)
+
+print("Average grades calculated and saved successfully.")
